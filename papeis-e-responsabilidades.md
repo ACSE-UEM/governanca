@@ -103,6 +103,29 @@ projetos, e quem a mantém decide o vocabulário que todos usam.
 - **Se vago:** a federativa remaneja a fila para outro revisor. Fila parada é
   visível no painel da federativa por desenho.
 
+> #### Origem do pedido: link de inscrição público do sistema legado
+>
+> Enquanto o sistema legado de cadastro convive em paralelo com o app-casas (ver
+> [minuta de endosso](minutas/termo-de-endosso-uem.md)), a via de entrada de um
+> pedido de adesão é um **link de inscrição público**: qualquer pessoa pode
+> submeter o cadastro de uma casa, sem exigir que a própria casa o tenha feito.
+>
+> - O pedido nasce com `esp:statusAdesao = EmRevisao`. Esse status **não** significa
+>   pendência da casa: significa que o dado ainda **não foi conferido** por um
+>   revisor regional e não pode ser tratado como confirmado.
+> - O revisor regional confere o pedido contra a jurisdição e a realidade
+>   conhecida da região antes de aprovar. Aprovado, o status muda para `Adesa`.
+>   Recusado ou sem confirmação da casa, permanece `EmRevisao` ou volta a
+>   `NaoAdesa` — esse critério de transição ainda não está formalizado por
+>   escrito e é uma lacuna a fechar.
+> - **Porque a entrada é pública e não verificada**, uma casa em `EmRevisao` é o
+>   dado **menos** confiável do fluxo, não o mais próximo de confirmado. Ver a
+>   regra de publicação em
+>   [politica-de-publicacao-de-dados.md](politica-de-publicacao-de-dados.md#casas-não-adesas-ou-em-revisão--regra-explícita).
+> - Não há hoje um SLA declarado para quanto tempo uma casa pode ficar parada em
+>   `EmRevisao`. É o mesmo risco de "fila parada" citado acima para o papel do
+>   revisor, e deveria ser visível pelo mesmo desenho.
+
 ## Papéis de quem contribui de fora
 
 ### Colaborador

@@ -24,7 +24,7 @@ Um órgão enxerga a **sua** jurisdição, jamais a de outro no mesmo nível. Um
 enxerga o detalhamento de outra CRE. Isso não é desconfiança: é a mesma lógica que
 impede comparação e ranking entre pares.
 
-## Casas conhecidas mas não adesas — regra explícita
+## Casas não adesas ou em revisão — regra explícita
 
 Coordenadores regionais pediram a exibição de casas que existem e são conhecidas do
 movimento kardecista, mas que **não aderiram** à federativa. O pedido é legítimo e
@@ -36,26 +36,43 @@ explícita, e não fica a critério de quem implementa.
 Não aderir é escolha legítima, não é pendência, não é irregularidade, e não pode ser
 apresentada como tal.
 
+`esp:statusAdesao` é tri-estado: **Adesa**, **NaoAdesa** e **EmRevisao**. "EmRevisao"
+não é falta da casa — no site legado, o vínculo de adesão nasce de um link de
+inscrição público, e passa por conferência da equipe antes de ser confirmado como
+Adesa. Uma casa em EmRevisao pode ter se inscrito ontem ou pode nunca ter pedido
+nada e ter sido submetida por terceiros: **o dado ainda não foi verificado**, o que
+o torna mais sensível de expor nominalmente do que uma casa NaoAdesa, não menos.
+
 ### Permitido
 
-- No **painel interno do órgão que atende aquela região**: listar casas conhecidas
-  não adesas, com o dado que se tem, para que o órgão possa **se aproximar,
+- No **painel interno do órgão que atende aquela região**: listar casas não adesas
+  ou em revisão, com o dado que se tem, para que o órgão possa **se aproximar,
   convidar e oferecer apoio**.
 - No **painel público**: contagem agregada por município, quando respeitar
   k ≥ 5 — por exemplo "18 casas espíritas conhecidas em Uberaba".
 
 ### Proibido
 
-- Publicar **nome, endereço ou contato** de casa não adesa em qualquer superfície
-  pública.
+- Publicar **nome, endereço ou contato** de casa **NaoAdesa ou EmRevisao** em
+  qualquer superfície pública. Isso vale igualmente para as duas — EmRevisao **não**
+  é uma exceção por parecer mais próxima de Adesa, é dado não verificado.
 - Qualquer rótulo que sugira falta, atraso ou irregularidade: "pendente",
   "irregular", "não conforme", "faltante", "a regularizar". O vocabulário correto é
-  **"conhecida"**, **"prevista"** e **"adesa"**, conforme a ontologia.
+  **"não adesa"**, **"em revisão"** e **"adesa"**, conforme a ontologia.
 - Ranking, classificação ou comparação entre órgãos, regiões ou federativas por taxa
   de adesão, em qualquer audiência.
 - Meta de adesão apresentada como cobrança a um órgão ou a uma casa.
-- Uso da lista de não adesas para contato em massa. A aproximação é pessoal e
-  fraterna, feita por quem conhece a região.
+- Uso da lista de não adesas ou em revisão para contato em massa. A aproximação é
+  pessoal e fraterna, feita por quem conhece a região.
+
+> **Pendente de decisão (nível 2).** O painel público em produção
+> (`demografia-uem.pages.dev/cres/...`) hoje publica nome de casas com status
+> EmRevisao nominalmente, o que a regra acima proíbe. Isso não é desvio declarado
+> conforme a [regra de ouro do glossário](glossario.md) — é uma publicação que
+> ficou à frente desta política. Precisa de decisão de quem mantém o domínio:
+> agregar EmRevisao no painel público (tratamento igual a NaoAdesa) até confirmação,
+> ou formalizar uma exceção com justificativa e prazo. Até essa decisão, tratar como
+> **não conforme com esta política**, não como funcionalidade aceita.
 
 ### Como o painel apresenta
 

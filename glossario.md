@@ -18,7 +18,7 @@ aponta para lá.
 | **assistido** | beneficiário, assistido social | "beneficiário" tem carga assistencialista alheia ao movimento |
 | **casa** ou **casa espírita** | ONG, instituição religiosa, unidade | o movimento não se descreve como ONG |
 | **adesão** | filiação, cadastro obrigatório, credenciamento | a casa **adere** por decisão própria; não é filiada nem credenciada |
-| **conhecida** / **prevista** | pendente, irregular, faltante, não conforme | não aderir é escolha legítima da casa autônoma |
+| **não adesa** | pendente, irregular, faltante, não conforme | não aderir é escolha legítima da casa autônoma; "conhecida" e "prevista" foram os termos usados até a revisão de `esp:statusAdesao` para tri-estado (ver [ontologia-espirita](../ontologia-espirita/docs/glossario.md)), hoje descontinuados |
 | **frequentador** | membro, fiel, associado | a casa espírita não tem fiéis |
 | **voluntário** ou **tarefeiro** | funcionário, colaborador, recurso | trabalho espírita é voluntário e gratuito |
 
@@ -57,7 +57,7 @@ usam o formal. O modelo guarda os dois.
 | Termo | Definição |
 | :--- | :--- |
 | **adere a** | Vínculo formal da casa com a federativa. **Opcional** — a casa tem autonomia para decidir. |
-| **situação de adesão** | Adesa, pendente, prevista ou conhecida. "Pendente" descreve um pedido em andamento, jamais uma falta. |
+| **situação de adesão** | Adesa, NaoAdesa ou EmRevisao (tri-estado, `esp:statusAdesao`). "EmRevisao" descreve um pedido em conferência, jamais uma falta da casa. |
 | **atendida por** | Caminho administrativo de apoio (AME, CRE, Regional). Independente da adesão: uma casa pode ser apoiada sem ter aderido. |
 | **parte de** | Relação hierárquica **entre órgãos**. Uma casa nunca é parte de um órgão. |
 | **órgão interno de** | Do órgão unificador para a sua federativa. |
