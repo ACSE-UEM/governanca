@@ -1,0 +1,79 @@
+# Guardas de conformidade — integração contínua.
+#
+# Instalação: copie para .github/workflows/guardas.yml no repositório.
+#
+# Roda em todo Pull Request e em todo envio para o ramo principal. Verifica dado
+# pessoal, segredos, e a consistência das regras federativas. As três falham o
+# Pull Request; nenhuma delas é opcional.
+
+name: Guardas de conformidade
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  dados-pessoais:
+    name: Dado pessoal
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guarda de PII em todos os arquivos versionados
+        run: sh scripts/guarda-pii.sh --tudo
+
+  segredos:
+    name: Segredos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # gitleaks precisa do histórico completo
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  regras-federativas:
+    name: Consistência das regras federativas
+    runs-on: ubuntu-latest
+    # Sem condição de existência: hashFiles() é avaliado antes do checkout, com o
+    # espaço de trabalho vazio, e nunca seria verdadeiro. O próprio script encerra
+    # com sucesso quando docs/regras/ não existe.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verificar identificadores, sobreposições e prazos de revisão
+        run: python3 scripts/verifica_regras.py
+
+  dco:
+    name: Assinatura DCO
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verificar Signed-off-by em cada commit
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          topo="${{ github.event.pull_request.head.sha }}"
+          faltando=0
+          for c in $(git rev-list "$base".."$topo"); do
+            if ! git log -1 --format=%B "$c" | grep -qi '^Signed-off-by:'; then
+              echo "Commit sem Signed-off-by: $c — $(git log -1 --format=%s "$c")"
+              faltando=1
+            fi
+          done
+          if [ "$faltando" -ne 0 ]; then
+            echo ""
+            echo "Assine os commits com 'git commit -s'. Para corrigir os existentes:"
+            echo "  git rebase --signoff $base"
+            exit 1
+          fi
+          echo "Todos os commits assinados."

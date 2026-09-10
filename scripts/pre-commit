@@ -1,0 +1,71 @@
+#!/bin/sh
+# Gancho de pré-commit do ecossistema ACSE/UEM.
+#
+# Instalação (uma vez, em cada cópia local do repositório):
+#
+#   cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+#
+# ou, preferido, apontando o git para um diretório versionado de ganchos:
+#
+#   git config core.hooksPath scripts/hooks
+#
+# Para pular deliberadamente (só com motivo, e nunca para dado pessoal):
+#
+#   git commit --no-verify
+
+set -eu
+
+RAIZ="$(git rev-parse --show-toplevel)"
+cd "$RAIZ"
+
+falhou=0
+
+executar() {
+  descricao="$1"; shift
+  printf '  %s... ' "$descricao"
+  if "$@" > /tmp/pre-commit-saida.$$ 2>&1; then
+    printf 'ok\n'
+  else
+    printf 'FALHOU\n\n'
+    cat /tmp/pre-commit-saida.$$
+    printf '\n'
+    falhou=1
+  fi
+  rm -f /tmp/pre-commit-saida.$$
+}
+
+printf 'Verificações de pré-commit:\n'
+
+# 1. Dado pessoal — a verificação que não se pula.
+if [ -x scripts/guarda-pii.sh ]; then
+  executar 'dado pessoal (guarda-pii)' sh scripts/guarda-pii.sh
+fi
+
+# 2. Segredos, quando gitleaks estiver disponível.
+if command -v gitleaks > /dev/null 2>&1; then
+  executar 'segredos (gitleaks)' gitleaks protect --staged --redact --no-banner
+fi
+
+# 3. Arquivo grande em stage — quase sempre um dado que não deveria entrar.
+grandes="$(git diff --cached --name-only --diff-filter=ACMR \
+           | while IFS= read -r f; do
+               [ -f "$f" ] || continue
+               tam=$(wc -c < "$f")
+               [ "$tam" -gt 5242880 ] && printf '%s (%s MB)\n' "$f" "$((tam / 1048576))"
+             done)"
+if [ -n "$grandes" ]; then
+  printf '  arquivo grande... FALHOU\n\n'
+  printf 'Arquivos acima de 5 MB em stage:\n%s\n\n' "$grandes"
+  printf 'Dados brutos ficam fora do repositório. Se for legítimo, use --no-verify.\n\n'
+  falhou=1
+else
+  printf '  arquivo grande... ok\n'
+fi
+
+if [ "$falhou" -ne 0 ]; then
+  printf 'Commit interrompido. Corrija os pontos acima.\n'
+  exit 1
+fi
+
+printf 'Tudo certo.\n'
+exit 0
