@@ -135,7 +135,6 @@ menos. Casos previstos:
 - idade mínima de conta e consentimento do responsável legal (LGPD e ECA);
 - proibição de expor vínculo religioso de pessoa em superfície pública;
 - prazo máximo de resposta a direito do titular;
-- agregação mínima k ≥ 5 em dado estatístico publicado;
 - proibição de coletar dado de pessoa atendida.
 
 ## Quem decide

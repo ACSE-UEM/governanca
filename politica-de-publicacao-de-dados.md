@@ -48,8 +48,9 @@ o torna mais sensível de expor nominalmente do que uma casa NaoAdesa, não meno
 - No **painel interno do órgão que atende aquela região**: listar casas não adesas
   ou em revisão, com o dado que se tem, para que o órgão possa **se aproximar,
   convidar e oferecer apoio**.
-- No **painel público**: contagem agregada por município, quando respeitar
-  k ≥ 5 — por exemplo "18 casas espíritas conhecidas em Uberaba".
+- No **painel público**: contagem agregada por município — por exemplo "18 casas
+  espíritas conhecidas em Uberaba". Apenas casas adesas e voluntárias são
+  contadas; casas não adesas ou em revisão são filtradas.
 
 ### Proibido
 
@@ -103,12 +104,6 @@ Enquanto não houver autorização escrita:
 
 A minuta de solicitação de autorização está em
 [minutas/oficio-feb-webfec.md](minutas/oficio-feb-webfec.md).
-
-## Agregação mínima
-
-**k ≥ 5** em toda célula publicada, conforme a [política de LGPD](politica-lgpd.md).
-Célula suprimida é exibida como "dado suprimido para proteger a privacidade", nunca
-como zero e nunca em branco.
 
 ## Honestidade do dado
 
