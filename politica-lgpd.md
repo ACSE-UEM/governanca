@@ -103,13 +103,16 @@ dado pessoal do solicitante e não se exclui por esse caminho.
 
 ## 7. Agregação estatística
 
-Todo número publicado em painel, relatório ou resposta de IA respeita
-**k-anonimato com k ≥ 5**: nenhuma célula com menos de cinco indivíduos ou cinco
-casas é exibida. Em município pequeno, "3 espíritas na atividade X" identifica
-pessoas, mesmo sem citar nomes.
+*Removida por RFC #1 (2026-09-24).* A agregação mínima k ≥ 5 foi descontinuada.
+Consultar a proposta de mudança e a decisão do COFEMG para contexto histórico.
 
-Células suprimidas aparecem como "dado suprimido para proteger a privacidade", e
-nunca como zero ou como célula vazia — o leitor precisa saber que existe dado ali.
+A proteção de dados pessoais agora se baseia em:
+
+- **Casas e dados institucionais**: publicados com consentimento específico da
+  instituição (casa adesa ou órgão); não há agregação mínima imposta.
+- **Dados de voluntários, atividades internas**: permanecem internos, não
+  publicados em painel, relatório ou resposta de IA (ver §9).
+- **Dados de terceiros** (FEB): conforme politica-de-publicacao-de-dados.md.
 
 ## 8. Dados em repositório
 
